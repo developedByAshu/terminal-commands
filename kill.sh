@@ -6,12 +6,13 @@ pkill --oldest chrome
 pkill nautilus
 pkill Discord
 pkill postman
-pkill slack
+# pkill slack
 # pkill xdman
 pkill java
 pkill zoom
 pkill code
-(xdotool key --clearmodifiers "alt+s" && wmctrl -a "carbon");
-pkill carbon
+pkill kontena-lens
+# (xdotool key --clearmodifiers "alt+s" && wmctrl -a "carbon");
+#pkill carbon
 
 kill -25 $PPID
