@@ -38,7 +38,7 @@ xdotool search --onlyvisible --class gnome-terminal windowactivate
 sleep 1
 
 # Switch to the first tab
-xdotool key alt 1
+xdotool key alt+1
 
 # Wait for the tab to activate
 sleep 1
