@@ -1,6 +1,7 @@
 #!/bin/bash
 
-pkill --oldest chrome
+# pkill --oldest chrome
+pkill chrome
 # pkill mattermost
 # pkill mailspring
 pkill nautilus
