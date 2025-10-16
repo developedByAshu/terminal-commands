@@ -1,12 +1,12 @@
 #!/bin/bash
 
-osascript <<EOF
-tell application "System Events"
-    tell application process "iTerm2"
-        keystroke "+" using {command down}
-    end tell
-end tell
-EOF
+# osascript <<EOF
+# tell application "System Events"
+#     tell application process "iTerm2"
+#         keystroke "+" using {command down}
+#     end tell
+# end tell
+# EOF
 
 # Paths
 backend_path="$HOME/Documents/Office/integrtr/integrtr_platform_backend"
@@ -14,7 +14,7 @@ ui_path="$HOME/Documents/Office/integrtr/integrtr_platform_ui"
 
 # "SL Lambda"
 # Tab labels and corresponding shell commands
-tabs=("Core" "Sy" "Sy Wkr" "Sy Pro" "Sy RBP" "AM" "DF" "DF Wkr" "BL" "MDGen" "MDGen Wkr" "MDGen Pro" "UI")
+tabs=("Core" "Sy" "Sy Wkr" "Sy PullPro" "Sy RBP" "AM" "DF" "DF Wkr" "BL" "MDGen" "MDGen Wkr" "MDGen Pro" "UI")
 commands=(
   "cd \"$backend_path\" && yarn p:core nodemon"
   "cd \"$backend_path\" && yarn p:sy nodemon"
@@ -39,6 +39,7 @@ tmp_script=$(mktemp)
 echo 'tell application "iTerm"' >> "$tmp_script"
 echo '  activate' >> "$tmp_script"
 echo '  set currentWin to current window' >> "$tmp_script"
+echo '  set originalTab to current tab of currentWin' >> "$tmp_script"
 
 for i in "${!tabs[@]}"; do
   tab_name="${tabs[$i]}"
@@ -56,6 +57,9 @@ for i in "${!tabs[@]}"; do
   echo '    end tell' >> "$tmp_script"
   echo '  end tell' >> "$tmp_script"
 done
+
+# Refocus back to the original tab
+echo '  select originalTab' >> "$tmp_script"
 
 echo 'end tell' >> "$tmp_script"
 
